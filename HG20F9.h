@@ -10,7 +10,7 @@ static int ax8817x_set_mac_addr (struct net_device *net, void *p);
  * function "skb_reserve (skb, NET_IP_ALIGN)" to retain the buffer aligned on
  * double word alignment for ingress packets.
  */
-#define AX_FORCE_BUFF_ALIGN		0
+#define AX_FORCE_BUFF_ALIGN		1
 
 #define AX_MONITOR_MODE			0x01
 #define AX_MONITOR_LINK			0x02

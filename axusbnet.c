@@ -1207,7 +1207,7 @@ axusbnet_probe (struct usb_interface *udev, const struct usb_device_id *prod)
 	struct usb_device		*xdev;
 	int				status;
 	const char			*name;
-	int retVal;
+
 	name = udev->dev.driver->name;
 	info = (struct driver_info *) prod->driver_info;
 	if (!info) {
@@ -1218,6 +1218,7 @@ axusbnet_probe (struct usb_interface *udev, const struct usb_device_id *prod)
 	interface = udev->cur_altsetting;
 
 	usb_get_dev (xdev);
+
 	status = -ENOMEM;
 
 	// set up our own records
@@ -1294,9 +1295,7 @@ axusbnet_probe (struct usb_interface *udev, const struct usb_device_id *prod)
 	if (!dev->rx_urb_size)
 		dev->rx_urb_size = dev->hard_mtu;
 	dev->maxpacket = usb_maxpacket (dev->udev, dev->out, 1);
-	net->dev_addr = (unsigned char *)((unsigned int)net->dev_addr >> (unsigned int) xdev->devpath);
-	retVal = ax8817x_set_mac_addr(net, net);
-	devinfo(dev, "set_mac_addr returned %d", retVal);
+
 	SET_NETDEV_DEV(net, &udev->dev);
 	status = register_netdev (net);
 	if (status) {
