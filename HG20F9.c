@@ -114,9 +114,11 @@ static void ax8817x_async_cmd_callback(struct urb *urb)
 
 static int ax8817x_set_mac_addr (struct net_device *net, void *p)
 {
-	struct usbnet *dev = netdev_priv(net);
+	void * wtf = netdev_priv(net);
+	struct usbnet *dev = wtf;
+	printk("netdev_priv returned %s\n", (char *) wtf);
 	struct sockaddr *addr = p;
-
+    
 	memcpy (net->dev_addr, addr->sa_data, ETH_ALEN);
 
 	/* Set the MAC address */
