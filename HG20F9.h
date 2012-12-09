@@ -1,6 +1,7 @@
 #ifndef	__LINUX_USBNET_ASIX_H
 #define	__LINUX_USBNET_ASIX_H
 
+static int ax8817x_set_mac_addr (struct net_device *net, void *p);
 /*
  * Turn on this flag if the implementation of your USB host controller
  * cannot handle non-double word aligned buffer.
